@@ -1,12 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: allse
- * Date: 22.03.2018
- * Time: 18:23
- */
 
 class PackageDependenciesException extends Exception
 {
-
+    public function __construct($message = "", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
 }

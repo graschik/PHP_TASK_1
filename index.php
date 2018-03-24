@@ -7,11 +7,11 @@ require_once('dependency_manager.php');
 $packages = array(
     'A' => [
         'name' => 'A',
-        'dependencies' => ['B', 'C','F'],
+        'dependencies' => ['B', 'C'],
     ],
     'B' => [
         'name' => 'B',
-        'dependencies' => ['G'],
+        'dependencies' => [],
     ],
     'C' => [
         'name' => 'C',
@@ -19,28 +19,16 @@ $packages = array(
     ],
     'D' => [
         'name' => 'D',
-        'dependencies' => ['E'],
-    ],
-    'E' => [
-        'name' => 'E',
-        'dependencies' => ['G'],
-    ],
-    'F' => [
-        'name' => 'F',
-        'dependencies' => ['E','C'],
-    ],
-    'G' => [
-        'name' => 'G',
         'dependencies' => [],
-    ],
-    'H' => [
-        'name' => 'H',
-        'dependencies' => ['A'],
-    ],
+    ]
 );
 
-validatePackageDefinition($packages);
+try {
 
-echo '<pre>';
-print_r(getAllPackageDependencies($packages,'A'));
-echo '<pre>';
+    validatePackageDefinition($packages);
+    echo '<pre>';
+    print_r(getAllPackageDependencies($packages, 'A'));
+    echo '<pre>';
+} catch (PackageDependenciesException $e) {
+    echo $e->getMessage();
+}
